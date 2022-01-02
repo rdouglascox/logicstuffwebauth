@@ -16,7 +16,7 @@ stanzas:
     # The path given is for Stack projects. If you're still using cabal, change
     # to
     # exec: ../dist/build/logicstuffwebauth/logicstuffwebauth
-    exec: ../dist/bin/logicstuffwebauth
+    exec: ../dist/bin/logicstuffweb
 
     # Command line options passed to your application.
     args: []
