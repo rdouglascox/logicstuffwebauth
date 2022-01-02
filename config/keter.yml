@@ -25,7 +25,7 @@ stanzas:
       # You can specify one or more hostnames for your application to respond
       # to. The primary hostname will be used for generating your application
       # root.
-      - www.logicstuffwebauth.com
+      - www.logicstuff.xyz
 
     # Enable to force Keter to redirect to https
     # Can be added to any stanza
@@ -34,7 +34,7 @@ stanzas:
   # Static files.
   - type: static-files
     hosts:
-      - static.logicstuffwebauth.com
+      - static.logicstuff.xyz
     root: ../static
 
     # Uncomment to turn on directory listings.
@@ -44,9 +44,9 @@ stanzas:
   - type: redirect
 
     hosts:
-      - logicstuffwebauth.com
+      - logicstuff.xyz
     actions:
-      - host: www.logicstuffwebauth.com
+      - host: www.logicstuff.xyz
         # secure: false
         # port: 80
 
@@ -55,7 +55,7 @@ stanzas:
 
 # Use the following to automatically copy your bundle upon creation via `yesod
 # keter`. Uses `scp` internally, so you can set it to a remote destination
-# copy-to: user@host:/opt/keter/incoming/
+copy-to: root@149.28.161.159:/opt/keter/incoming/
 
 # You can pass arguments to `scp` used above. This example limits bandwidth to
 # 1024 Kbit/s and uses port 2222 instead of the default 22

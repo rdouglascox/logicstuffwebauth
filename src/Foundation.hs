@@ -104,13 +104,49 @@ instance Yesod App where
         mcurrentRoute <- getCurrentRoute
 
         -- Get the breadcrumbs, as defined in the YesodBreadcrumbs instance.
-        (title, parents) <- breadcrumbs
+     --   (title, parents) <- breadcrumbs
 
         -- Define the menu items of the header.
         let menuItems =
                 [ NavbarLeft $ MenuItem
-                    { menuItemLabel = "Home"
+                    { menuItemLabel = "home"
                     , menuItemRoute = HomeR
+                    , menuItemAccessCallback = True
+                    }
+                    ,
+                  NavbarLeft $ MenuItem
+                    { menuItemLabel = "problemsets"
+                    , menuItemRoute = ProblemSetsR
+                    , menuItemAccessCallback = True
+                    }
+                    ,
+                  NavbarLeft $ MenuItem
+                    { menuItemLabel = "tables"
+                    , menuItemRoute = PLTablesR
+                    , menuItemAccessCallback = True
+                    }
+                    ,
+                  NavbarLeft $ MenuItem
+                    { menuItemLabel = "pltrees"
+                    , menuItemRoute = PLTreesR
+                    , menuItemAccessCallback = True
+                    }
+                    ,
+                  NavbarLeft $ MenuItem
+                    { menuItemLabel = "gplitrees"
+                    , menuItemRoute = GPLITreesR
+                    , menuItemAccessCallback = True
+                    }
+                    ,
+                  NavbarLeft $ MenuItem
+                    { menuItemLabel = "conversions"
+                    , menuItemRoute = ConversionsR
+                    , menuItemAccessCallback = True
+                    }
+                    ,
+                  NavbarLeft $ MenuItem
+                    { menuItemLabel = "tools"
+                    , menuItemRoute = ToolsR
                     , menuItemAccessCallback = True
                     }
                 , NavbarRight $ MenuItem
@@ -162,6 +198,7 @@ instance Yesod App where
     -- the profile route requires that the user is authenticated, so we
     -- delegate to that function
     isAuthorized PLTreesR _ = isAuthenticated
+    isAuthorized _ _ = return Authorized
 
     -- This function creates static content files in the static folder
     -- and names them based on a hash of their content. This allows
@@ -200,7 +237,7 @@ instance Yesod App where
     makeLogger = return . appLogger
 
 -- Define breadcrumbs.
-instance YesodBreadcrumbs App where
+{- instance YesodBreadcrumbs App where
     -- Takes the route that the user is currently on, and returns a tuple
     -- of the 'Text' that you want the label to display, and a previous
     -- breadcrumb route.
@@ -208,7 +245,7 @@ instance YesodBreadcrumbs App where
         :: Route App  -- ^ The route the user is visiting currently.
         -> Handler (Text, Maybe (Route App))
     breadcrumb HomeR = return ("Home", Nothing)
-    breadcrumb  _ = return ("home", Nothing)
+    breadcrumb  _ = return ("home", Nothing) -}
 
 -- How to run database actions.
 instance YesodPersist App where
