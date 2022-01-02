@@ -3,7 +3,36 @@
 # For more information, please see the documentation at:
 #   https://docs.haskellstack.org/en/stable/lock_files
 
-packages: []
+packages:
+- completed:
+    name: problemsets
+    version: 0.1.0.0
+    git: https://github.com/rdouglascox/problemsets
+    pantry-tree:
+      size: 6225
+      sha256: 41ab6c8b87628e4acf5c26863de46a2184960eba245fcbfe571cab4218f2e39f
+    commit: f9ba503fef3e654358e19463a88960a12e56283a
+  original:
+    git: https://github.com/rdouglascox/problemsets
+    commit: f9ba503fef3e654358e19463a88960a12e56283a
+- completed:
+    name: firstorderlogic
+    version: 0.1.0.0
+    git: https://github.com/rdouglascox/firstorderlogic
+    pantry-tree:
+      size: 1713
+      sha256: c1e15833c7cb894a9ea752e8386b32f531b3444e2ac8864c850d21e6c4d0fd53
+    commit: d6b3fe09f5db4539011764677207609d490c9485
+  original:
+    git: https://github.com/rdouglascox/firstorderlogic
+    commit: d6b3fe09f5db4539011764677207609d490c9485
+- completed:
+    hackage: SVGFonts-1.8.0.1@sha256:66a29cebd825bdac6ed1da83bd3a310ba6e8db5d63d6511015d644b9a8ec48b8,3019
+    pantry-tree:
+      size: 1506
+      sha256: 51fbfeff7f01beeaba78985d9416b579f72f29aa266c1af7fe0d09bde0850266
+  original:
+    hackage: SVGFonts-1.8.0.1@sha256:66a29cebd825bdac6ed1da83bd3a310ba6e8db5d63d6511015d644b9a8ec48b8,3019
 snapshots:
 - completed:
     size: 534126

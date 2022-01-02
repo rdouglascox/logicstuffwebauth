@@ -1,0 +1,19 @@
+
+<div .container>
+    <!-- 
+        ================================================== -->
+    <div .bs-docs-section>
+        <div .row>
+            <div .col-lg-12>
+                <div .page-header>
+                    <h1> more about logicstuff
+
+                    <p> i started writing the command-line tools that form the 'backend' of logic stuff online back in 2019 as a way of teaching myself how to program. back then, I had been tutoring first-year logic for a while and had just lectured in first-year logic for the first time. i thought to myself, hey, wouldn't it be cool to be able to automate some of the more tedious aspects of teaching logic, and I had been meaning to teach myself to program for years, but just couldn't find a project that I could focus my efforts on. well, here's the outcome of those efforts over three or four years of evenings—or scraps of evenings that I managed to claw back from my children.
+
+                    <p> i can't recall exactly how I stumbled upon <a href="https://www.haskell.org/">Haskell</a> as my language of choice for implementing the command line tools. i think I choose it partly because it had a reputation for being difficult, but also because it looked familiar. in certain respects it looked like the lambda-calculus, and I was familiar with the lambda-calculus. also, it didn't involve any tedious low-level manipulations of variables, pointers, and whathaveyou that other programing language involve. learning certain aspects of Haskell has certainly been a challenge, but now it is my natural 'first-language' and everything else seems foreign now.
+
+                    <p> logicstuff online uses the Haskell-based <a href="http://www.yesodweb.com">Yesod</a> web-framework. it too has a reputation for being difficult. but it was the first web-framework that I could work out how to integrate my 'backend' scripts into. web development is a nightmare.
+
+                    <h1> a warning
+
+                    <p> oh, and one final thing. logicstuff online is very much still in development. although something like problemsets can already be used to produce questions for problem sets, it cannot yet be relied on to produce correct answers, especially to translation questions. almost everything on this website needs more thorough testing. but testing takes time and energy. neither of which do I have much of. that said, feedback is very much welcome. if you spot a problem, let me know: <a href="mailto:ryan.cox@sydney.edu.au">ryan.cox@sydney.edu.au</a>

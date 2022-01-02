@@ -264,7 +264,10 @@ th {
   }
   .table-bordered th,
   .table-bordered td {
-    border: 1px solid #ddd !important;
+    border: 1px solid #2c3e50 !important;
+    padding: 3px;
+    text-align: center;
+    font-weight: normal;
   }
 }
 @font-face {
@@ -2307,7 +2310,7 @@ th {
   padding: 5px;
 }
 .table-bordered {
-  border: 1px solid #ecf0f1;
+  border: 1px solid #2c3e50;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > th,
@@ -2315,11 +2318,17 @@ th {
 .table-bordered > thead > tr > td,
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td {
-  border: 1px solid #ecf0f1;
+  border: 1px solid #2c3e50;
+  padding: 3px;
+  text-align: center;
+  font-weight: normal;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
   border-bottom-width: 2px;
+  padding: 3px;
+  text-align: center;
+  font-weight: normal;
 }
 .table-striped > tbody > tr:nth-of-type(odd) {
   background-color: #f9f9f9;
@@ -6870,7 +6879,7 @@ table-bordered > tbody > tr > td,
 .table-bordered > tbody > tr > td,
 table-bordered > tfoot > tr > td,
 .table-bordered > tfoot > tr > td {
-  border: 1px solid #ecf0f1;
+  border: 1px solid #2c3e50;
 }
 .form-control,
 input {

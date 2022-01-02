@@ -2,13 +2,31 @@
 -- Syntax for this file here: https://www.yesodweb.com/book/routing-and-handlers
 
 /static StaticR Static appStatic
-/auth   AuthR   Auth   getAuth
 
 /favicon.ico FaviconR GET
 /robots.txt RobotsR GET
+/auth   AuthR   Auth   getAuth
 
-/ HomeR GET POST
+/ HomeR GET
+/about AboutR GET
+/tools ToolsR GET
+/help HelpR GET
 
-/comments CommentR POST
+/problemsets ProblemSetsR GET
+/problemsets/problemset01 ProblemSet01R GET
+/problemsets/problemset02 ProblemSet02R GET
+/problemsets/problemset03 ProblemSet03R GET
+/problemsets/problemset04 ProblemSet04R GET
+/problemsets/problemset05 ProblemSet05R GET
+/problemsets/problemset06 ProblemSet06R GET
+/problemsets/problemset07 ProblemSet07R GET
+/problemsets/problemset08 ProblemSet08R GET
+/problemsets/problemset09 ProblemSet09R GET
+/problemsets/problemset010 ProblemSet10R GET
+/problemsets/problemset011 ProblemSet11R GET
 
-/profile ProfileR GET
+/pltrees PLTreesR GET POST
+/pltables PLTablesR GET POST
+/gplitrees GPLITreesR GET POST
+/conversions ConversionsR GET POST
+/dp DPR GET POST

@@ -1,0 +1,95 @@
+    <h1 class="title">logic tools</h1>
+    </header>
+    <h2 id="overview">overview</h2>
+    <p>here you will find a collection of command line programs or ‘tools’ to make teaching and learning logic a little easier.</p>
+    <p>Some are more refined than others. Many are incomplete. And all of them can be improved. That said, even in their current form, you may find them useful. Needless to say, they come with no warranty. You install and use them at your own risk. Make sure you know what you are doing.</p>
+    <p>Each tool is written as a simple command line utility. The programs conform to the unix philosophy of doing one thing and doing it well. (Although most of the programs can do more than one thing!) You might think that this makes them a little bit user-unfriendly compared to the online tools which are already available. Perhaps. But they come into their own when they can be strung together and fed into other programs to do other things.</p>
+    <h2 id="the-programs">the programs</h2>
+    <p>Currently the tools consist of the following command line programs:</p>
+    <ul>
+    <li><a href="https://github.com/rdouglascox/models">models</a> gets a formula and a model from the user and then gives the truth value of a formula in the model.</li>
+    <li><a href="https://github.com/rdouglascox/rgpli">rgpli</a> generates random formulas of GPLI.</li>
+    <li><a href="https://github.com/rdouglascox/gplitrees">gplitrees</a> produces truth trees of GPLI.</li>
+    <li><a href="https://github.com/rdouglascox/rmodels">rmodels</a> produces a random model given a formula.</li>
+    <li><a href="https://github.com/rdouglascox/modelstutor">modeltutor</a> generates a random formula and a model and then asks the user for the truth value of the formula on the model.</li>
+    <li><a href="https://github.com/rdouglascox/problemsets">problemsets</a> generates a random problem sets.</li>
+    </ul>
+    <p>Each of the links provides more detail about the programs.</p>
+    <h2 id="getting-compiling-and-installing-the-programs">getting, compiling, and installing the programs</h2>
+    <p>Here is a list of the options available to you for getting the programs:</p>
+    <ol type="1">
+    <li>Install the programs from source.</li>
+    </ol>
+    <p>Ha! No more binaries. Too much work for me. Installing from sources isn’t too hard. Here’s how to do it.</p>
+    <h3 id="getting-the-source-code">getting the source code</h3>
+    <p>First, get the source code using <code>git</code>. e.g.</p>
+    <pre><code>git clone https://github.com/rdouglascox/problemsets.git</code></pre>
+    <p>This will give you a folder called ‘problemsets’ which you can now <code>cd</code> into.</p>
+    <pre><code>cd problemsets</code></pre>
+    <h3 id="building-and-installing-with-stack">building and installing with stack</h3>
+    <p>You are going to need to install <a href="https://docs.haskellstack.org/en/stable/README/">stack</a>. (stack is a haskell build tool). On a unix-like system you can install it will the following command:</p>
+    <pre><code>curl -sSL https://get.haskellstack.org/ | sh</code></pre>
+    <p>Once you have stack installed, make sure you are in the <code>problemsets</code> directory. Then run:</p>
+    <pre><code>stack setup</code></pre>
+    <p>This will download the relevant version of <code>ghc</code>, the Glasgow Haskell Compiler, for compiling the source.</p>
+    <p>Okay, now to build from source, from within the trees directory:</p>
+    <pre><code>stack install</code></pre>
+    <p>And then make sure <code>~/.local/bin</code> is in your <code>PATH</code> variable.</p>
+    <p>On a mac, this will involve adding a line like the following to your <code>.bash_profile</code> or creating a bash profile with the following line:</p>
+    <pre><code>export PATH=&quot;Users/yourusername/.local/bin/:$PATH&quot;</code></pre>
+    <p>Then reset your terminal. You will only have to do this once. Then each program you install will just run automatically.</p>
+    <p>Now you can just run the program from the command line wherever you are.</p>
+    <pre><code>problemsets</code></pre>
+    <h2 id="conventions">conventions</h2>
+    <p>Here are some conventions which remain relatively constant across the programs in logictools.</p>
+    <h3 id="connectives">connectives</h3>
+    <p>Across most of the programs the standard connectives are defined as follows:</p>
+    <pre><code>negation: ~ 
+    conjunction: &amp;
+    disjunction: v
+    conditional: -&gt;
+    biconditional: &lt;-&gt;</code></pre>
+    <p>The exception here is that <code>tables</code> allows for any zero, one, or two place connective in the form <code>&lt;1_2&gt;</code> where 1 is the number of places and 2 is the number of the connective as standardly defined.</p>
+    <h3 id="quantifiers">quantifiers</h3>
+    <p>The quantifiers are defined as follows.</p>
+    <pre><code>universal: @
+    existential: #</code></pre>
+    <p>Generally, the programs allow for vaccous binding like this:</p>
+    <pre><code>@xFa</code></pre>
+    <p>But they will either crash or provide the wrong answers for open formulas like this:</p>
+    <pre><code>#xFy</code></pre>
+    <h3 id="sentences-letters-in-pl">sentences letters in PL</h3>
+    <p>Nothing interesting to see here.</p>
+    <pre><code>sentence letters: [A..Z]</code></pre>
+    <h3 id="predicates-names-and-variables-in-mpl-gpl-and-gpli">predicates, names, and variables in MPL, GPL, and GPLI</h3>
+    <p>Since <code>v</code> is reserved for disjunction, it is excluded from the standard set of varaiables.</p>
+    <pre><code>predicates: [A..Z]
+    names: [a..t]
+    variables: [u,w,x,y,z]</code></pre>
+    <h3 id="identity-in-gpli">identity in GPLI</h3>
+    <p>We have <code>=</code> as shorthand for identity. <code>=</code> is immediately translated behind the scenes into the two-place predicate <code>I</code> in <code>models</code>.</p>
+    <pre><code>identity: =</code></pre>
+    <h3 id="parentheses">parentheses</h3>
+    <p>Generally outer parentheses are required and cannot be dropped. It would be trivial to drop this requirement. But I am too lazy.</p>
+    <h3 id="models">models</h3>
+    <p>Models are represented as follows:</p>
+    <pre><code>model:
+      domain: [1,2,3]
+      referents:
+        a: 1
+        b: 3
+      extensions:
+        one-place: 
+          G: [1,2]
+          H: [1,3]
+        three-place: 
+          G: [(1,1,1),(2,1,3)]</code></pre>
+    <p>The programs are very strict about the indentation here. The standard is two spaces for indentation. Tabs won’t work.</p>
+    <p>As with models in general, domains are required, referents are optional, and the extension of at least one predicate is required. Unused predicates are optional. So entries like <code>two-place []</code> are unnecessary. Notice that there are two entries for <code>G</code> here. Predicates are contextually disambiguated.</p>
+    <p>Models can be stored as ordinary text files. The file-extension doesn’t matter. <code>.txt</code> is fine. <code>.yaml</code> will give you nice syntax highlighting good text-editors.</p>
+    <h2 id="haskell">haskell</h2>
+    <p>These are all written in Haskell (www.haskell.org), a purely functional programming language based on the lambda calculus. Often, there are no fancy algorithms behind the scenes. A program like <code>trees</code>, for instance, build trees as per the tree building methods described in N. J. J. Smith (2012) <em>Logic: The Laws of Truth</em>.</p>
+    <h2 id="documentation-and-help">documentation and help</h2>
+    <p>Most of the examples assume you are in a unix-like environment like Linux or MacOSX. The example commands work on Linux machines but should also work on Mac OSX. Modifications may be required. As for Windows, I can’t help. You will need some kind of command line environment. Make sure you know how to kill a process (Ctrl-c) before you run it. You run these programs at your own risk.</p>
+    <p>If you encounter any bugs, or have suggestions about how any of these programs may be improved, email me at <a href="mailto:ryan.cox@sydney.edu.au" class="email">ryan.cox@sydney.edu.au</a>.</p>
+    

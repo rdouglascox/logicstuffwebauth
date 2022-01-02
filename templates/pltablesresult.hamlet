@@ -1,0 +1,29 @@
+<div .container>
+    <!-- Forms
+        ================================================== -->
+    <div .bs-docs-section>
+        <div .row>
+            <div .col-lg-12>
+                <div .page-header>
+                    <h1 #forms>PL Truth Tables
+
+        <div .row>
+            <div .col-lg-6>
+                <div .bs-callout bs-callout-info well>
+                    <form .form-horizontal method=post action=@{PLTablesR}#table enctype=#{formEnctype'}>
+                        ^{formWidget'}
+
+                        <button .btn.btn-primary type="submit">
+                            Submit
+
+
+            <div .col-lg-4.col-lg-offset-1>
+                <div .bs-callout.bs-callout-info.upload-response>
+
+                    #{mytable}
+                    $# $maybe ht <-submission'
+                    $#     ht
+                    $# $nothing
+                    $#     The tree will appear here...
+
+    <hr>

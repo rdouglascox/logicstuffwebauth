@@ -40,7 +40,14 @@ packages:
 # - git: https://github.com/commercialhaskell/stack.git
 #   commit: e7b331f14bcffb8367cd58fbfc8b40ec7642100a
 #
-# extra-deps: []
+extra-deps:
+  - git: https://github.com/rdouglascox/problemsets
+    commit: f9ba503fef3e654358e19463a88960a12e56283a
+  - git: https://github.com/rdouglascox/firstorderlogic
+    commit: d6b3fe09f5db4539011764677207609d490c9485
+#  - ../problemsets/
+#  - ../firstorderlogic/
+  - SVGFonts-1.8.0.1@sha256:66a29cebd825bdac6ed1da83bd3a310ba6e8db5d63d6511015d644b9a8ec48b8,3019
 
 # Override default flag values for local packages and extra-deps
 # flags: {}

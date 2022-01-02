@@ -1,0 +1,25 @@
+<div .container>
+    <!-- 
+        ================================================== -->
+    <div .bs-docs-section>
+        <div .row>
+            <div .col-lg-12>
+                <div .page-header>
+                    <h1 #start>problemsets
+                    <p>
+                        coming up with problem sets for undergraduate logic courses is a tedious matter. will the truth tree for this set of propositions be too big? how can I ensure that the students will have to apply the existential rule? etc. problemsets removes the tedium of coming up with problem sets by automatically generating appropriately curated question and answer pairs.
+
+                        <ul>
+                        <li> <a href=@{ProblemSet01R}>ProblemSet01</a>: PL translations
+                        <li> <a href=@{ProblemSet02R}>ProblemSet02</a>: PL truth tables
+                        <li> <a href=@{ProblemSet03R}>ProblemSet03</a>: Normal forms
+                        <li> <a href=@{ProblemSet04R}>ProblemSet04</a>: PL truth trees
+                        <li> <a href=@{ProblemSet05R}>ProblemSet05</a>: MPL translations
+                        <li> <a href=@{ProblemSet06R}>ProblemSet06</a>: GPL translations
+                        <li> <a href=@{ProblemSet07R}>ProblemSet07</a>: MPL truth trees
+                        <li> <a href=@{ProblemSet08R}>ProblemSet08</a>: MPL and GPL models
+                        <li> <a href=@{ProblemSet09R}>ProblemSet09</a>: GPL truth trees
+                        <li> <a href=@{ProblemSet10R}>ProblemSet10</a>: GPLI truth trees
+                        <li> <a href=@{ProblemSet11R}>ProblemSet11</a>: GPLI translations
+                        
+
