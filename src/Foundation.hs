@@ -197,7 +197,7 @@ instance Yesod App where
 
     -- the profile route requires that the user is authenticated, so we
     -- delegate to that function
-    isAuthorized PLTreesR _ = isAuthenticated
+    -- isAuthorized PLTreesR _ = isAuthenticated
     isAuthorized _ _ = return Authorized
 
     -- This function creates static content files in the static folder
