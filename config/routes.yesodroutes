@@ -30,3 +30,4 @@
 /gplitrees GPLITreesR GET POST
 /conversions ConversionsR GET POST
 /dp DPR GET POST
+/rpl RPLR GET POST

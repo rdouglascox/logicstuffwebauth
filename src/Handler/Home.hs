@@ -21,6 +21,10 @@ import MakePS.MakePS09
 import MakePS.MakePS10
 import MakePS.MakePS11
 
+import System.Random
+import Helpers.RandomPL
+
+
 -- imports for pl trees form
 import qualified Forms.PLtrees as PL
 import qualified Forms.GPLItrees as GPLI
@@ -407,3 +411,68 @@ conversionForm = renderBootstrap3 BootstrapBasicForm $ ConversionForm
             , fsName = Nothing
             , fsAttrs = []
             }
+
+-- random pl props
+
+data RPLForm = RPLForm (Maybe Int) (Maybe Int) (Maybe Int) (Maybe Text)
+
+
+rplForm :: Form RPLForm
+rplForm = renderBootstrap3 BootstrapBasicForm $ RPLForm
+    <$> aopt intField intSettings1 Nothing
+    <*> aopt intField intSettings2 Nothing
+    <*> aopt intField intSettings3 Nothing
+    <*> aopt textField textSettings Nothing
+    -- Add attributes like the placeholder and CSS classes.
+    where textSettings = FieldSettings
+            { fsLabel = "Basic proposition symbols:"
+            , fsTooltip = Nothing
+            , fsId = Nothing
+            , fsName = Nothing
+            , fsAttrs =
+                [ ("class", "form-control")
+                , ("placeholder", "e.g. PQZ")
+                ]
+            }
+          intSettings1 = FieldSettings
+            { fsLabel = "The minimum number of connectives in a proposition:"
+            , fsTooltip = Nothing
+            , fsId = Nothing
+            , fsName = Nothing
+            , fsAttrs = [("placeholder", "e.g. 1")]
+            }
+          intSettings2 = FieldSettings
+            { fsLabel = "The maximum number of connectives in a proposition:"
+            , fsTooltip = Nothing
+            , fsId = Nothing
+            , fsName = Nothing
+            , fsAttrs = [("placeholder", "e.g. 3")]
+            }
+          intSettings3 = FieldSettings
+            { fsLabel = "The number of propositions: "
+            , fsTooltip = Nothing
+            , fsId = Nothing
+            , fsName = Nothing
+            , fsAttrs = [("placeholder", "e.g. 3")]
+            }
+
+getRPLR :: Handler Html
+getRPLR = do
+    (formWidget', formEnctype') <- generateFormPost rplForm   -- my own form
+    defaultLayout $ do
+        setTitle "logicstuff | rpl"
+        $(widgetFile "rpl") 
+
+postRPLR :: Handler Html
+postRPLR = do
+    ((result', formWidget'), formEnctype') <- runFormPost rplForm
+    let submission' = case result' of
+            FormSuccess res -> Just res
+            _ -> Nothing
+    defaultLayout $ do
+            gen <- liftIO newStdGen
+            let proplist = case submission' of
+                             Nothing -> toHtml ("Form error" :: String)
+                             Just (RPLForm x y z u) -> getrPL gen z y z u  
+            setTitle "logicstuff | rpl"
+            $(widgetFile "rplresults")
