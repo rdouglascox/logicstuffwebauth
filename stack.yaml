@@ -42,7 +42,7 @@ packages:
 #
 extra-deps:
   - git: https://github.com/rdouglascox/problemsets
-    commit: b4ec47c5bae6cef998167a00a54a50e4b3be2eb1
+    commit: 7351508d744af6e0e529abd1cf218e3addd2152e
   - git: https://github.com/rdouglascox/firstorderlogic
     commit: d6b3fe09f5db4539011764677207609d490c9485
 #  - ../problemsets/

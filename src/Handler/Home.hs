@@ -414,7 +414,7 @@ conversionForm = renderBootstrap3 BootstrapBasicForm $ ConversionForm
 
 -- random pl props
 
-data RPLForm = RPLForm (Maybe Int) (Maybe Int) (Maybe Int) (Maybe Text)
+data RPLForm = RPLForm (Maybe Int) (Maybe Int) (Maybe Int) (Maybe Text) (Maybe Bool)
 
 
 rplForm :: Form RPLForm
@@ -423,6 +423,7 @@ rplForm = renderBootstrap3 BootstrapBasicForm $ RPLForm
     <*> aopt intField intSettings2 Nothing
     <*> aopt intField intSettings3 Nothing
     <*> aopt textField textSettings Nothing
+    <*> aopt checkBoxField boxSettings1 Nothing
     -- Add attributes like the placeholder and CSS classes.
     where textSettings = FieldSettings
             { fsLabel = "Basic proposition symbols:"
@@ -431,7 +432,7 @@ rplForm = renderBootstrap3 BootstrapBasicForm $ RPLForm
             , fsName = Nothing
             , fsAttrs =
                 [ ("class", "form-control")
-                , ("placeholder", "e.g. PQZ")
+                , ("placeholder", "e.g. PQR")
                 ]
             }
           intSettings1 = FieldSettings
@@ -449,11 +450,18 @@ rplForm = renderBootstrap3 BootstrapBasicForm $ RPLForm
             , fsAttrs = [("placeholder", "e.g. 3")]
             }
           intSettings3 = FieldSettings
-            { fsLabel = "The number of propositions: "
+            { fsLabel = "The number of propositions in list of propositions: "
             , fsTooltip = Nothing
             , fsId = Nothing
             , fsName = Nothing
             , fsAttrs = [("placeholder", "e.g. 3")]
+            }
+          boxSettings1 = FieldSettings
+            { fsLabel = "ASCII output? "
+            , fsTooltip = Nothing
+            , fsId = Nothing
+            , fsName = Nothing
+            , fsAttrs = []
             }
 
 getRPLR :: Handler Html
@@ -473,6 +481,6 @@ postRPLR = do
             gen <- liftIO newStdGen
             let proplist = case submission' of
                              Nothing -> toHtml ("Form error" :: String)
-                             Just (RPLForm x y z u) -> getrPL gen z y z u  
+                             Just (RPLForm x y z u b) -> getrPL gen x y z u b
             setTitle "logicstuff | rpl"
             $(widgetFile "rplresults")

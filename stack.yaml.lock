@@ -10,11 +10,11 @@ packages:
     git: https://github.com/rdouglascox/problemsets
     pantry-tree:
       size: 6225
-      sha256: 9cecc7fdf4b21e802dc3d1e0726bf62112d6c062e1326a83718669b95aadd97b
-    commit: b4ec47c5bae6cef998167a00a54a50e4b3be2eb1
+      sha256: 79fe165871f46b5bd23a5f741e113569ca5ee95540974722700e181c296f852a
+    commit: 7351508d744af6e0e529abd1cf218e3addd2152e
   original:
     git: https://github.com/rdouglascox/problemsets
-    commit: b4ec47c5bae6cef998167a00a54a50e4b3be2eb1
+    commit: 7351508d744af6e0e529abd1cf218e3addd2152e
 - completed:
     name: firstorderlogic
     version: 0.1.0.0
