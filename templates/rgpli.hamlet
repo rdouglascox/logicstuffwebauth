@@ -5,12 +5,11 @@
         <div .row>
             <div .col-lg-12>
                 <div .page-header>
-                    <h1 #forms>truth tables
-
+                    <h1 #forms>random gpli propositions
         <div .row>
             <div .col-lg-6>
                 <div .bs-callout bs-callout-info well>
-                    <form .form-horizontal method=post action=@{PLTablesR}#table enctype=#{formEnctype'}>
+                    <form .form-horizontal method=post action=@{RGPLIR}#rgpli enctype=#{formEnctype'}>
                         ^{formWidget'}
 
                         <button .btn.btn-primary type="submit">
@@ -20,7 +19,6 @@
             <div .col-lg-4.col-lg-offset-1>
                 <div .bs-callout.bs-callout-info.upload-response>
 
-                    #{mytable}
                     $# $maybe ht <-submission'
                     $#     ht
                     $# $nothing

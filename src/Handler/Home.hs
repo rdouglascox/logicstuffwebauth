@@ -23,7 +23,7 @@ import MakePS.MakePS11
 
 import System.Random
 import Helpers.RandomPL
-
+import Helpers.RandomGPLI
 
 -- imports for pl trees form
 import qualified Forms.PLtrees as PL
@@ -173,8 +173,8 @@ getProblemSet11R = do
 -- | here's is how we do forms in yesod
 
 data PropForm = PropForm   -- my own thingy for getting propositions
-    { propInput :: Text
-    , isArg :: Bool
+    { propInput1 :: Text
+    , isArg1 :: Bool
     }
 
 propForm :: Form PropForm
@@ -189,7 +189,35 @@ propForm = renderBootstrap3 BootstrapBasicForm $ PropForm
             , fsName = Nothing
             , fsAttrs =
                 [ ("class", "form-control")
-                , ("placeholder", "e.g. (A->B),(CvD),((E&G)<->D), or  @x(Ax->Bx)")
+                , ("placeholder", "e.g. (A->B),(CvD),((E&G)<->D)")
+                ]
+            }
+          boxSettings = FieldSettings
+            { fsLabel = "Is the input an argument? "
+            , fsTooltip = Nothing
+            , fsId = Nothing
+            , fsName = Nothing
+            , fsAttrs = []
+            }
+
+data PropForm1 = PropForm1   -- my own thingy for getting propositions
+    { propInput :: Text
+    , isArg :: Bool
+    }
+
+propForm1 :: Form PropForm1
+propForm1 = renderBootstrap3 BootstrapBasicForm $ PropForm1
+    <$> areq textField textSettings Nothing
+    <*> areq checkBoxField boxSettings Nothing
+    -- Add attributes like the placeholder and CSS classes.
+    where textSettings = FieldSettings
+            { fsLabel = "Enter a list of propositions here."
+            , fsTooltip = Nothing
+            , fsId = Nothing
+            , fsName = Nothing
+            , fsAttrs =
+                [ ("class", "form-control")
+                , ("placeholder", "e.g. @x(Ax->Bx)")
                 ]
             }
           boxSettings = FieldSettings
@@ -267,25 +295,25 @@ postPLTablesR = do
 
 getGPLITreesR :: Handler Html
 getGPLITreesR = do
-    (formWidget', formEnctype') <- generateFormPost propForm   -- my own form
+    (formWidget', formEnctype') <- generateFormPost propForm1   -- my own form
     defaultLayout $ do
         setTitle "logicstuff | gpli truth trees"
         $(widgetFile "gplitrees") 
 
 postGPLITreesR :: Handler Html
 postGPLITreesR = do
-    ((result', formWidget'), formEnctype') <- runFormPost propForm
+    ((result', formWidget'), formEnctype') <- runFormPost propForm1
     let submission' = case result' of
             FormSuccess res -> Just res
             _ -> Nothing
     defaultLayout $ do
             let mytreehtml = case submission' of
                     Nothing -> "" 
-                    Just (PropForm prop _) -> prop
+                    Just (PropForm1 prop _) -> prop
             let arg = case submission' of
                       Nothing -> False
-                      Just (PropForm _ True) -> True
-                      Just (PropForm _ False) -> False
+                      Just (PropForm1 _ True) -> True
+                      Just (PropForm1 _ False) -> False
             if arg 
                 then do
                 mytree <- liftIO (GPLI.treeformHTMLa mytreehtml)
@@ -484,3 +512,88 @@ postRPLR = do
                              Just (RPLForm x y z u b) -> getrPL gen x y z u b
             setTitle "logicstuff | rpl"
             $(widgetFile "rplresults")
+
+-- random gpli propositions
+
+
+data RGPLIForm = RGPLIForm (Maybe Int) (Maybe Int) (Maybe Int) (Maybe Text) (Maybe Text) (Maybe Bool)
+
+
+rgpliForm :: Form RGPLIForm
+rgpliForm = renderBootstrap3 BootstrapBasicForm $ RGPLIForm
+    <$> aopt intField intSettings1 Nothing
+    <*> aopt intField intSettings2 Nothing
+    <*> aopt intField intSettings3 Nothing
+    <*> aopt textField textSettings Nothing
+    <*> aopt textField textSettings1 Nothing
+    <*> aopt checkBoxField boxSettings1 Nothing
+    -- Add attributes like the placeholder and CSS classes.
+    where textSettings = FieldSettings
+            { fsLabel = "Predicate symbols:"
+            , fsTooltip = Nothing
+            , fsId = Nothing
+            , fsName = Nothing
+            , fsAttrs =
+                [ ("class", "form-control")
+                , ("placeholder", "e.g. FGH")
+                ]
+            }
+          textSettings1 = FieldSettings
+            { fsLabel = "Names:"
+            , fsTooltip = Nothing
+            , fsId = Nothing
+            , fsName = Nothing
+            , fsAttrs =
+                [ ("class", "form-control")
+                , ("placeholder", "e.g. abc")
+                ]
+            }
+          intSettings1 = FieldSettings
+            { fsLabel = "The minimum number of connectives in a proposition:"
+            , fsTooltip = Nothing
+            , fsId = Nothing
+            , fsName = Nothing
+            , fsAttrs = [("placeholder", "e.g. 1")]
+            }
+          intSettings2 = FieldSettings
+            { fsLabel = "The maximum number of connectives in a proposition:"
+            , fsTooltip = Nothing
+            , fsId = Nothing
+            , fsName = Nothing
+            , fsAttrs = [("placeholder", "e.g. 3")]
+            }
+          intSettings3 = FieldSettings
+            { fsLabel = "The number of propositions in list of propositions: "
+            , fsTooltip = Nothing
+            , fsId = Nothing
+            , fsName = Nothing
+            , fsAttrs = [("placeholder", "e.g. 3")]
+            }
+          boxSettings1 = FieldSettings
+            { fsLabel = "ASCII output? "
+            , fsTooltip = Nothing
+            , fsId = Nothing
+            , fsName = Nothing
+            , fsAttrs = []
+            }
+
+getRGPLIR :: Handler Html
+getRGPLIR = do
+    (formWidget', formEnctype') <- generateFormPost rgpliForm   -- my own form
+    defaultLayout $ do
+        setTitle "logicstuff | rgpli"
+        $(widgetFile "rgpli") 
+
+postRGPLIR :: Handler Html
+postRGPLIR = do
+    ((result', formWidget'), formEnctype') <- runFormPost rgpliForm
+    let submission' = case result' of
+            FormSuccess res -> Just res
+            _ -> Nothing
+    defaultLayout $ do
+            gen <- liftIO newStdGen
+            let proplist = case submission' of
+                             Nothing -> toHtml ("Form error" :: String)
+                             Just (RGPLIForm x y z u1 u2 b) -> getrGPLI gen x y z u1 u2 b
+            setTitle "logicstuff | rgpli"
+            $(widgetFile "rgpliresults")

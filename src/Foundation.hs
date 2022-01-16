@@ -151,6 +151,12 @@ instance Yesod App where
                     }
                     ,
                   NavbarLeft $ MenuItem
+                    { menuItemLabel = "rgpli"
+                    , menuItemRoute = RGPLIR
+                    , menuItemAccessCallback = True
+                    }
+                    ,
+                  NavbarLeft $ MenuItem
                     { menuItemLabel = "tools"
                     , menuItemRoute = ToolsR
                     , menuItemAccessCallback = True

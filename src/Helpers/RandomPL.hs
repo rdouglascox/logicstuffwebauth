@@ -30,7 +30,4 @@ getrPL g x y z u b = case b of
     Just False -> H.toHtml $ printprops $ rPL g (getSettings x y z u)
     Just True -> H.toHtml $ printPLprops $ rPL g (getSettings x y z u)
 
-getrPL' ::  Maybe Int -> Maybe Int -> Maybe Int -> Maybe Text -> IO H.Html
-getrPL' x y z u = do
-    gen <- newStdGen
-    return (getrPL gen x y z u)
+

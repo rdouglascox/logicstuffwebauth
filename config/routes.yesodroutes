@@ -31,3 +31,4 @@
 /conversions ConversionsR GET POST
 /dp DPR GET POST
 /rpl RPLR GET POST
+/rgpli RGPLIR GET POST
