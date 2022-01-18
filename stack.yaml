@@ -44,7 +44,7 @@ extra-deps:
   - git: https://github.com/rdouglascox/problemsets
     commit: 7a48ad907d12d306694eec85411d16cfabeb30ea
   - git: https://github.com/rdouglascox/firstorderlogic
-    commit: d6b3fe09f5db4539011764677207609d490c9485
+    commit: e0a1cf0e97e37fb7015ca7e4e23494e378de2f86
 #  - ../problemsets/
 #  - ../firstorderlogic/
   - SVGFonts-1.8.0.1@sha256:66a29cebd825bdac6ed1da83bd3a310ba6e8db5d63d6511015d644b9a8ec48b8,3019
