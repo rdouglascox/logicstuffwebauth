@@ -5,28 +5,6 @@
 
 packages:
 - completed:
-    name: problemsets
-    version: 0.1.0.0
-    git: https://github.com/rdouglascox/problemsets
-    pantry-tree:
-      size: 6289
-      sha256: 7014b3fe91028b07a81f63600818243b9d0e967e28b606b1681738377d0bdb88
-    commit: 7a48ad907d12d306694eec85411d16cfabeb30ea
-  original:
-    git: https://github.com/rdouglascox/problemsets
-    commit: 7a48ad907d12d306694eec85411d16cfabeb30ea
-- completed:
-    name: firstorderlogic
-    version: 0.1.0.0
-    git: https://github.com/rdouglascox/firstorderlogic
-    pantry-tree:
-      size: 1713
-      sha256: c1e15833c7cb894a9ea752e8386b32f531b3444e2ac8864c850d21e6c4d0fd53
-    commit: d6b3fe09f5db4539011764677207609d490c9485
-  original:
-    git: https://github.com/rdouglascox/firstorderlogic
-    commit: d6b3fe09f5db4539011764677207609d490c9485
-- completed:
     hackage: SVGFonts-1.8.0.1@sha256:66a29cebd825bdac6ed1da83bd3a310ba6e8db5d63d6511015d644b9a8ec48b8,3019
     pantry-tree:
       size: 1506

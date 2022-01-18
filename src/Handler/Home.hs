@@ -29,7 +29,6 @@ import Helpers.RandomGPLI
 import qualified Forms.PLtrees as PL
 import qualified Forms.GPLItrees as GPLI
 import qualified Forms.PLtables as PLT
-import qualified Conversions.Conversions as CV
 import qualified DPform.DPform as DPform
 
 import ClassyPrelude.Yesod (checkBoxField, FieldSettings (FieldSettings))
@@ -373,13 +372,16 @@ postConversionsR = do
             FormSuccess res -> Just res
             _ -> Nothing
     defaultLayout $ do
-            let mytreehtml = case submission' of
-                    Nothing -> "" 
-                    Just (ConversionForm prop _ _ _ _) -> prop
+            let (mytreehtml,a) = case submission' of
+                    Nothing -> ("",False) 
+                    Just (ConversionForm prop _ _ _ _ True) -> (prop,True)
+                    Just (ConversionForm prop _ _ _ _ False) -> (prop,False)
             let arg = case submission' of
                       Nothing -> (False,False,False,False)
-                      Just (ConversionForm _ n c d p) -> (n,c,d,p)
-            let mytree = CV.safeconversions mytreehtml arg
+                      Just (ConversionForm _ n c d p _) -> (n,c,d,p)
+            let mytree = case a of 
+                            False -> CV.safeconversions mytreehtml arg
+                            True -> CV.safeconversions' mytreehtml arg
             setTitle "logicstuff | conversions"
             $(widgetFile "conversionsresult")
 
@@ -391,6 +393,7 @@ data ConversionForm = ConversionForm   -- my own thingy for getting propositions
     , docnf :: Bool
     , dodnf :: Bool 
     , dopnf :: Bool
+    , ascii :: Bool
     }
 
 conversionForm :: Form ConversionForm
@@ -400,6 +403,7 @@ conversionForm = renderBootstrap3 BootstrapBasicForm $ ConversionForm
     <*> areq checkBoxField boxSettings2 Nothing
     <*> areq checkBoxField boxSettings3 Nothing
     <*> areq checkBoxField boxSettings4 Nothing
+    <*> areq checkBoxField boxSettings5 Nothing
     -- Add attributes like the placeholder and CSS classes.
     where textSettings = FieldSettings
             { fsLabel = "Enter a proposition here."
@@ -434,6 +438,13 @@ conversionForm = renderBootstrap3 BootstrapBasicForm $ ConversionForm
             }
           boxSettings4 = FieldSettings
             { fsLabel = "Prenex Normal Form "
+            , fsTooltip = Nothing
+            , fsId = Nothing
+            , fsName = Nothing
+            , fsAttrs = []
+            }
+          boxSettings5 = FieldSettings
+            { fsLabel = "ASCII output? "
             , fsTooltip = Nothing
             , fsId = Nothing
             , fsName = Nothing
